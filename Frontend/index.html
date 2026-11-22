@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Car Price Predictor</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="hero">
+
+        <p class="badge">AI • MACHINE LEARNING</p>
+
+        <h1>Car Price Predictor</h1>
+
+        <p>
+            Enter your car details and get an estimated market price.
+        </p>
+
+    </header>
+
+
+    <!-- MAIN CARD -->
+    <main class="card">
+
+        <form id="predictionForm">
+
+            <div class="form-grid">
+
+                <!-- COMPANY -->
+                <div class="form-group">
+
+                    <label for="company">
+                        Company
+                    </label>
+
+                    <input
+                        type="text"
+                        id="company"
+                        placeholder="e.g. Maruti"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- MODEL -->
+                <div class="form-group">
+
+                    <label for="model">
+                        Car Model
+                    </label>
+
+                    <input
+                        type="text"
+                        id="model"
+                        placeholder="e.g. Swift"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- YEAR -->
+                <div class="form-group">
+
+                    <label for="year">
+                        Manufacturing Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="year"
+                        min="1990"
+                        max="2026"
+                        placeholder="e.g. 2018"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- KM -->
+                <div class="form-group">
+
+                    <label for="km_driven">
+                        Kilometers Driven
+                    </label>
+
+                    <input
+                        type="number"
+                        id="km_driven"
+                        min="0"
+                        placeholder="e.g. 50000"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- FUEL -->
+                <div class="form-group">
+
+                    <label for="fuel">
+                        Fuel Type
+                    </label>
+
+                    <select id="fuel" required>
+
+                        <option value="">
+                            Select fuel type
+                        </option>
+
+                        <option value="Petrol">
+                            Petrol
+                        </option>
+
+                        <option value="Diesel">
+                            Diesel
+                        </option>
+
+                        <option value="CNG">
+                            CNG
+                        </option>
+
+                        <option value="LPG">
+                            LPG
+                        </option>
+
+                        <option value="Electric">
+                            Electric
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SELLER -->
+                <div class="form-group">
+
+                    <label for="seller_type">
+                        Seller Type
+                    </label>
+
+                    <select id="seller_type" required>
+
+                        <option value="">
+                            Select seller type
+                        </option>
+
+                        <option value="Individual">
+                            Individual
+                        </option>
+
+                        <option value="Dealer">
+                            Dealer
+                        </option>
+
+                        <option value="Trustmark Dealer">
+                            Trustmark Dealer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TRANSMISSION -->
+                <div class="form-group">
+
+                    <label for="transmission">
+                        Transmission
+                    </label>
+
+                    <select id="transmission" required>
+
+                        <option value="">
+                            Select transmission
+                        </option>
+
+                        <option value="Manual">
+                            Manual
+                        </option>
+
+                        <option value="Automatic">
+                            Automatic
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- OWNER -->
+                <div class="form-group">
+
+                    <label for="owner">
+                        Owner
+                    </label>
+
+                    <select id="owner" required>
+
+                        <option value="">
+                            Select owner type
+                        </option>
+
+                        <option value="First Owner">
+                            First Owner
+                        </option>
+
+                        <option value="Second Owner">
+                            Second Owner
+                        </option>
+
+                        <option value="Third Owner">
+                            Third Owner
+                        </option>
+
+                        <option value="Fourth & Above Owner">
+                            Fourth & Above Owner
+                        </option>
+
+                        <option value="Test Drive Car">
+                            Test Drive Car
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTON -->
+            <button
+                type="submit"
+                id="predictBtn"
+            >
+
+                <span id="buttonText">
+                    Predict Price
+                </span>
+
+                <span
+                    id="spinner"
+                    class="spinner hidden"
+                ></span>
+
+            </button>
+
+        </form>
+
+
+        <!-- ERROR -->
+        <div
+            id="errorBox"
+            class="message error hidden"
+        ></div>
+
+
+        <!-- RESULT -->
+        <section
+            id="result"
+            class="result hidden"
+        >
+
+            <p class="result-label">
+                Estimated Car Price
+            </p>
+
+            <h2 id="price">
+                ₹ 0
+            </h2>
+
+            <p id="resultNote">
+                Based on the machine learning model.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            Car Price Prediction • FastAPI + Scikit-learn
+        </p>
+
+    </footer>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
