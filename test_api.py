@@ -1,30 +1,34 @@
-import requests
+from fastapi.testclient import TestClient
+
+from app import app
 
 
-url = "http://127.0.0.1:8000/predict"
+client = TestClient(app)
 
 
-data = {
-    "company": "Maruti",
-    "model": "Swift",
-    "year": 2018,
-    "km_driven": 50000,
-    "fuel": "Diesel",
-    "seller_type": "Individual",
-    "transmission": "Manual",
-    "owner": "First Owner"
-}
+def test_prediction_endpoint_returns_price():
+    payload = {
+        "company": "Maruti",
+        "model": "Swift",
+        "year": 2018,
+        "km_driven": 50000,
+        "fuel": "Diesel",
+        "seller_type": "Individual",
+        "transmission": "Manual",
+        "owner": "First Owner",
+    }
+
+    response = client.post("/predict", json=payload)
+
+    assert response.status_code == 200
+    result = response.json()
+    assert result["success"] is True
+    assert result["currency"] == "INR"
+    assert isinstance(result["predicted_price"], (int, float))
+    assert result["predicted_price"] > 0
 
 
-response = requests.post(
-    url,
-    json=data
-)
+if __name__ == "__main__":
+    import pytest
 
-
-print("Status Code:")
-print(response.status_code)
-
-
-print("\nResponse:")
-print(response.json())
+    raise SystemExit(pytest.main([__file__, "-q"]))
